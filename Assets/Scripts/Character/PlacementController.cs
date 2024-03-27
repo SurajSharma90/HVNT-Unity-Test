@@ -5,10 +5,10 @@ using UnityEngine;
 public class PlacementController : MonoBehaviour
 {
     [Header("Raycast")]
-    [SerializeField] private float rayLength = 100f;
+    [SerializeField] [Range(10, 100)] private float rayLength = 100f;
     [SerializeField] private LayerMask layerMask;
-    [SerializeField] private Camera mainCamera;
-    [SerializeField] private GameObject objectContainer;
+    [SerializeField] private Camera mainCamera = null;
+    [SerializeField] private GameObject objectContainer = null;
     [Space(10)]
 
     [Header("Placement Object")]
@@ -16,8 +16,14 @@ public class PlacementController : MonoBehaviour
     [SerializeField] private int maxObjects = 3;
     private List<GameObject> objectList = new List<GameObject>();
 
-    private void Awake() {
-        
+    private void Awake() 
+    {
+        if(mainCamera == null)
+            Debug.LogException(new System.NullReferenceException("Main Camera object not assigned."));
+        if (objectContainer == null)
+            Debug.LogException(new System.NullReferenceException("Object Container object not assigned."));
+        if (placementObject == null)
+            Debug.LogException(new System.NullReferenceException("Placement Object object not assigned."));
     }
 
     // Start is called before the first frame update

@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class BallPuzzle : MonoBehaviour
 {
+    [Header("Singleton")]
     [Header("Puzzle Components")]
     [SerializeField] private bool chestOpen;
-    [SerializeField] private List<GameObject> placementObjectsList;
-    [SerializeField] private int triggerCount = 3;
+    [SerializeField] [Range(1, 100)] private int triggerCount = 3;
     [SerializeField] private GameObject orbitingPrefab;
+
+    private List<GameObject> placementObjectsList;
 
     private int followIndex = 0;
     private GameObject orbitingObject = null;
 
+    //Singleton
     public static BallPuzzle instance;
 
     private void Awake() 
@@ -32,7 +35,7 @@ public class BallPuzzle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(chestOpen == true && placementObjectsList.Count >= triggerCount) 
+        if(chestOpen == true && placementObjectsList != null && placementObjectsList.Count >= triggerCount)
         {
             if (orbitingObject == null)
                 orbitingObject = Instantiate(orbitingPrefab, placementObjectsList[0].transform.position, placementObjectsList[0].transform.rotation, transform);

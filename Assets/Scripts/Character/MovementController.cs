@@ -7,19 +7,17 @@ public class MovementController : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] private Rigidbody playerRigidBody = null;
-    [SerializeField] private float speed = 1f;
+    [SerializeField] [Range(1, 100)] private float speed = 1f;
     [SerializeField] private Transform orientation;
 
-    private Vector3 direction = Vector3.zero;
-    //[Space(10)]
-
-    //[Header("Mouse")]
-    
+    private Vector3 direction = Vector3.zero; 
 
     private void Awake() 
     {
         if (playerRigidBody == null)
-            Debug.LogError("Player Rigid Body is not assigned.");
+            Debug.LogException(new System.NullReferenceException("Player Rigidbody Component object not assigned."));
+        if (orientation == null)
+            Debug.LogException(new System.NullReferenceException("Orientation object not assigned."));
     }
 
     // Start is called before the first frame update

@@ -12,8 +12,12 @@ public class LookController : MonoBehaviour
 
     private Vector2 rotation = Vector2.zero;
 
-    private void Awake() {
-        
+    private void Awake() 
+    {
+        if (mainCamera == null)
+            Debug.LogException(new System.NullReferenceException("Main Camera object not assigned."));
+        if (orientation == null)
+            Debug.LogException(new System.NullReferenceException("Orientation object not assigned."));
     }
 
     // Start is called before the first frame update

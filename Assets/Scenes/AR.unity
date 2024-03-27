@@ -171,8 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chestOpen: 0
-  placementObjectsList: []
-  triggerCount: 3
+  triggerCount: 1
   orbitingPrefab: {fileID: 6127398048292623945, guid: ffcc9dcff83372a439402f3b75a86ee5,
     type: 3}
 --- !u!4 &62681892 stripped
