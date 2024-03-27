@@ -416,7 +416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3302a2b9022050248b5d6e52f3e78053, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayLength: 100
+  rayLength: 10
   layerMask:
     serializedVersion: 2
     m_Bits: 128
@@ -425,6 +425,7 @@ MonoBehaviour:
   placementObject: {fileID: 6127398048292623945, guid: 0fb36476f4ebe8f48b2cacbcbd415662,
     type: 3}
   maxObjects: 3
+  offsetFromSurface: 0.2
 --- !u!114 &4643101737066630546
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class BallPuzzle : MonoBehaviour
     [SerializeField] [Range(1, 100)] private int triggerCount = 3;
     [SerializeField] private GameObject orbitingPrefab;
     [SerializeField] [Range(1, 10)] private float orbitSpeed = 1f;
+    [SerializeField] [Range(0, 10)] private float orbiterOffset = 0.5f;
 
     private List<GameObject> placementObjectsList;
 
@@ -38,14 +39,16 @@ public class BallPuzzle : MonoBehaviour
     {
         if(chestOpen == true && placementObjectsList != null && placementObjectsList.Count >= triggerCount)
         {
+            Vector3 positionOffset = placementObjectsList[0].transform.up.normalized * orbiterOffset;
             if (orbitingObject == null)
-                orbitingObject = Instantiate(orbitingPrefab, placementObjectsList[0].transform.position, placementObjectsList[0].transform.rotation, transform);
+                orbitingObject = Instantiate(orbitingPrefab, placementObjectsList[0].transform.position + positionOffset, placementObjectsList[0].transform.rotation, transform);
             else
                 orbitingObject.SetActive(true);
 
             //Rotate between objects
-            orbitingObject.transform.position = Vector3.MoveTowards(orbitingObject.transform.position, placementObjectsList[followIndex].transform.position, orbitSpeed * Time.deltaTime);
-            if (orbitingObject.transform.position == placementObjectsList[followIndex].transform.position)
+            positionOffset = placementObjectsList[followIndex].transform.up.normalized * orbiterOffset;
+            orbitingObject.transform.position = Vector3.MoveTowards(orbitingObject.transform.position, placementObjectsList[followIndex].transform.position + positionOffset, orbitSpeed * Time.deltaTime);
+            if (orbitingObject.transform.position == placementObjectsList[followIndex].transform.position + positionOffset)
             {
                 followIndex++;
 
@@ -68,5 +71,15 @@ public class BallPuzzle : MonoBehaviour
     public void SetPlacementObjectsList(List<GameObject> list) 
     {
         placementObjectsList = list;
+    }
+
+    public void ResetOrbitingObject() 
+    {
+        if(orbitingObject != null && placementObjectsList != null && placementObjectsList.Count >= triggerCount) 
+        {
+            Vector3 positionOffset = placementObjectsList[0].transform.up.normalized * orbiterOffset;
+            orbitingObject.transform.position = placementObjectsList[0].transform.position + positionOffset;
+            orbitingObject.transform.rotation = placementObjectsList[0].transform.rotation;
+        }
     }
 }

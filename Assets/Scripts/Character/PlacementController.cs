@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlacementController : MonoBehaviour
 {
     [Header("Raycast")]
-    [SerializeField] [Range(10, 100)] private float rayLength = 100f;
+    [SerializeField] [Range(10, 100)] private float rayLength = 10f;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private Camera mainCamera = null;
     [SerializeField] private GameObject objectContainer = null;
@@ -59,15 +59,18 @@ public class PlacementController : MonoBehaviour
                         objectList.RemoveAt(0);
 
                         GameObject newObject = Instantiate(placementObject, hit.point + hit.normal * offsetFromSurface, Quaternion.identity, objectContainer.transform);
+                        newObject.transform.rotation = Quaternion.FromToRotation(newObject.transform.up, hit.normal) * newObject.transform.rotation;
                         objectList.Add(newObject);
                     }
                     else 
                     {
                         GameObject newObject = Instantiate(placementObject, hit.point + hit.normal * offsetFromSurface, Quaternion.identity, objectContainer.transform);
+                        newObject.transform.rotation = Quaternion.FromToRotation(newObject.transform.up, hit.normal) * newObject.transform.rotation;
                         objectList.Add(newObject);
                     }
 
                     BallPuzzle.instance.SetPlacementObjectsList(objectList);
+                    BallPuzzle.instance.ResetOrbitingObject();
                 }
             }
         }
