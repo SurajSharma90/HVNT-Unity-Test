@@ -10,6 +10,7 @@ public class BallPuzzle : MonoBehaviour
     [SerializeField] private int triggerCount = 3;
     [SerializeField] private GameObject orbitingPrefab;
 
+    private int followIndex = 0;
     private GameObject orbitingObject = null;
 
     public static BallPuzzle instance;
@@ -35,6 +36,23 @@ public class BallPuzzle : MonoBehaviour
         {
             if (orbitingObject == null)
                 orbitingObject = Instantiate(orbitingPrefab, placementObjectsList[0].transform.position, placementObjectsList[0].transform.rotation, transform);
+            else
+                orbitingObject.SetActive(true);
+
+            //Rotate between objects
+            orbitingObject.transform.position = Vector3.MoveTowards(orbitingObject.transform.position, placementObjectsList[followIndex].transform.position, 1f * Time.deltaTime);
+            if (orbitingObject.transform.position == placementObjectsList[followIndex].transform.position)
+            {
+                followIndex++;
+
+                if (followIndex >= placementObjectsList.Count)
+                    followIndex = 0;
+            }
+        }
+        else 
+        {
+            if (orbitingObject != null)
+                orbitingObject.SetActive(false);
         }
     }
 

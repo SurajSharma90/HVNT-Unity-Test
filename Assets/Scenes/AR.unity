@@ -173,7 +173,7 @@ MonoBehaviour:
   chestOpen: 0
   placementObjectsList: []
   triggerCount: 3
-  orbitingPrefab: {fileID: 6127398048292623945, guid: 0fb36476f4ebe8f48b2cacbcbd415662,
+  orbitingPrefab: {fileID: 6127398048292623945, guid: ffcc9dcff83372a439402f3b75a86ee5,
     type: 3}
 --- !u!4 &62681892 stripped
 Transform:
@@ -634,6 +634,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3538140435178422091, guid: 30d61019d6cc98e45856e6011f63fc47,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f935dee2ce0f27c4884fb6c2d1fc2ee2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30d61019d6cc98e45856e6011f63fc47, type: 3}
 --- !u!1001 &4512776527893438310
