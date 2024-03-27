@@ -47,7 +47,6 @@ public class PlacementController : MonoBehaviour
 
                     if(chestController) 
                     {
-                        Debug.Log("Chest Controller");
                         chestController.ToggleOpenLid();
                     }
                 }
