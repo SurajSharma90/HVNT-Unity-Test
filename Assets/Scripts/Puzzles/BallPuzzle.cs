@@ -9,6 +9,7 @@ public class BallPuzzle : MonoBehaviour
     [SerializeField] private bool chestOpen;
     [SerializeField] [Range(1, 100)] private int triggerCount = 3;
     [SerializeField] private GameObject orbitingPrefab;
+    [SerializeField] [Range(1, 10)] private float orbitSpeed = 1f;
 
     private List<GameObject> placementObjectsList;
 
@@ -43,7 +44,7 @@ public class BallPuzzle : MonoBehaviour
                 orbitingObject.SetActive(true);
 
             //Rotate between objects
-            orbitingObject.transform.position = Vector3.MoveTowards(orbitingObject.transform.position, placementObjectsList[followIndex].transform.position, 1f * Time.deltaTime);
+            orbitingObject.transform.position = Vector3.MoveTowards(orbitingObject.transform.position, placementObjectsList[followIndex].transform.position, orbitSpeed * Time.deltaTime);
             if (orbitingObject.transform.position == placementObjectsList[followIndex].transform.position)
             {
                 followIndex++;

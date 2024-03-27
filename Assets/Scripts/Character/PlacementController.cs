@@ -13,7 +13,8 @@ public class PlacementController : MonoBehaviour
 
     [Header("Placement Object")]
     [SerializeField] public GameObject placementObject;
-    [SerializeField] private int maxObjects = 3;
+    [SerializeField] [Range(1, 10)] private int maxObjects = 3;
+    [SerializeField] private float offsetFromSurface = 0.2f;
     private List<GameObject> objectList = new List<GameObject>();
 
     private void Awake() 
@@ -38,8 +39,8 @@ public class PlacementController : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) {
             RaycastHit hit;
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, rayLength, layerMask)) {
-                
+            if (Physics.Raycast(ray, out hit, rayLength, layerMask)) 
+            {
                 if(hit.transform.tag == "Chest")
                 {
                     ChestController chestController;
@@ -57,12 +58,12 @@ public class PlacementController : MonoBehaviour
                         Destroy(objectList[0]);
                         objectList.RemoveAt(0);
 
-                        GameObject newObject = Instantiate(placementObject, hit.point, Quaternion.identity, objectContainer.transform);
+                        GameObject newObject = Instantiate(placementObject, hit.point + hit.normal * offsetFromSurface, Quaternion.identity, objectContainer.transform);
                         objectList.Add(newObject);
                     }
                     else 
                     {
-                        GameObject newObject = Instantiate(placementObject, hit.point, Quaternion.identity, objectContainer.transform);
+                        GameObject newObject = Instantiate(placementObject, hit.point + hit.normal * offsetFromSurface, Quaternion.identity, objectContainer.transform);
                         objectList.Add(newObject);
                     }
 
@@ -70,5 +71,14 @@ public class PlacementController : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void Reset() 
+    {
+        foreach (GameObject obj in objectList)
+        {
+            Destroy(obj);
+        }
+        objectList.Clear();
     }
 }

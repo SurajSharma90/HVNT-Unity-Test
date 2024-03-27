@@ -38,4 +38,11 @@ public class ChestController : MonoBehaviour
         chestAnimator.SetBool("chest_open", open);
         BallPuzzle.instance.SetChestOpen(open);
     }
+
+    public void Reset() 
+    {
+        open = false;
+        chestAnimator.SetBool("chest_open", false);
+        BallPuzzle.instance.SetChestOpen(false);
+    }
 }
