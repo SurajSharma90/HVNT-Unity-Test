@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5853385880178869662}
   - component: {fileID: 340672260234659741}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 4005245554941177913}
   - component: {fileID: 4426720397399361205}
   - component: {fileID: 8796355164190405609}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Orbiter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
