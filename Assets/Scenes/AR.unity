@@ -173,8 +173,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chestOpen: 0
   triggerCount: 3
-  orbitingPrefab: {fileID: 6127398048292623945, guid: ffcc9dcff83372a439402f3b75a86ee5,
+  orbiterPrefab: {fileID: 6127398048292623945, guid: ffcc9dcff83372a439402f3b75a86ee5,
     type: 3}
+  placementObjectContainer: {fileID: 804804378}
   orbitSpeed: 2
   orbiterOffset: 0.4
 --- !u!114 &24262988

@@ -8,7 +8,8 @@ public class BallPuzzle : MonoBehaviour
     [Header("Puzzle Components")]
     [SerializeField] private bool chestOpen;
     [SerializeField] [Range(1, 100)] private int triggerCount = 3;
-    [SerializeField] private GameObject orbitingPrefab;
+    [SerializeField] private GameObject orbiterPrefab;
+    [SerializeField] private GameObject placementObjectContainer;
     [SerializeField] [Range(1, 10)] private float orbitSpeed = 1f;
     [SerializeField] [Range(0, 10)] private float orbiterOffset = 0.5f;
 
@@ -24,8 +25,10 @@ public class BallPuzzle : MonoBehaviour
     {
         instance = this;
         
-        if (orbitingPrefab == null)
+        if (orbiterPrefab == null)
             Debug.LogException(new System.NullReferenceException("Orbiting Prefab is not assigned."));
+        if (placementObjectContainer == null)
+            Debug.LogException(new System.NullReferenceException("Placement Object Container is not assigned."));
     }
 
     // Start is called before the first frame update
@@ -41,7 +44,7 @@ public class BallPuzzle : MonoBehaviour
         {
             Vector3 positionOffset = placementObjectsList[0].transform.up.normalized * orbiterOffset;
             if (orbitingObject == null)
-                orbitingObject = Instantiate(orbitingPrefab, placementObjectsList[0].transform.position + positionOffset, placementObjectsList[0].transform.rotation, transform);
+                orbitingObject = Instantiate(orbiterPrefab, placementObjectsList[0].transform.position + positionOffset, placementObjectsList[0].transform.rotation, placementObjectContainer.transform);
             else
                 orbitingObject.SetActive(true);
 

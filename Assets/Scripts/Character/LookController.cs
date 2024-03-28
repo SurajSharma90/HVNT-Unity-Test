@@ -31,7 +31,7 @@ public class LookController : MonoBehaviour
     {
         if(Input.GetMouseButton(1)) {
 
-            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
 
             float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensitivity.x;
